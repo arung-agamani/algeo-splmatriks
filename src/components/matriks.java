@@ -1,11 +1,11 @@
-package matriks;
+package components;
 
-public class matriks {
+public class Matriks {
     //atribut
     int[][] Mat = new int[10][10];
     //method
 
-    matriks() { //konstruktor:
+    Matriks() { //konstruktor:
         int i, j;
         for (i=1; i<10; i++) {
             for (j=1; j<10; j++) {
@@ -15,7 +15,7 @@ public class matriks {
     }
 
 
-    void isimatriks(int N, int M) {
+    public void isimatriks(int N, int M) {
         //mengisi elemen matriks M[i,j] dengan nilai i+ij
         int i, j;
         for (i=0; i<N; i++) {
@@ -25,7 +25,7 @@ public class matriks {
         }
     }
 
-    void tulismatriks(int N, int M) {
+    public void tulismatriks(int N, int M) {
         // Mencetak elemen-elemen matriks
         int i, j;
 

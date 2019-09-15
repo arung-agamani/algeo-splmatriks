@@ -1,4 +1,5 @@
 /* kelas driver matriks */
+package components;
 class DriverMatriks {
     public static void main(String[] args) {
         angka X = new angka (); // x merupakan nama dari class angka 
