@@ -1,4 +1,6 @@
-class matriks {
+package matriks;
+
+public class matriks {
     //atribut
     int[][] Mat = new int[10][10];
     //method

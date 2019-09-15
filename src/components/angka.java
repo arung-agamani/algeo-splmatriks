@@ -1,6 +1,7 @@
 /* kelas buat input */
+package angka;
 import java.util.*;
-class angka {
+public class angka {
     int M; //panjang baris
     int N; //panjang kolom
     //int a; //koefisien variabel
