@@ -39,11 +39,13 @@ public class matriks {
 
     void transpose(int N, int M, int Matt[][]) {
         //membuat matriks transpose
-        int i, j;
+        int i, j, temp;
 
         for (i=0; i<N; i++) {
-            for (j=0; j<M; j++) {
+            for (j=i; j<M; j++) {
+                temp = Matt[j][i];
                 Matt[j][i] = this.Mat[i][j];
+                this.Mat[i][j]=temp;
             }
         }
     }
