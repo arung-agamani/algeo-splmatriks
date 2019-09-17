@@ -30,4 +30,10 @@ public class angka {
         System.out.println("M= " + this.M);
         System.out.println("N= " + this.N);
     }
+
+
+    public void TulisPoint()
+    {
+        //WIP
+    }
 }
