@@ -32,7 +32,7 @@ public class angka {
     }
 
 
-    public void TulisPoint()
+    public void tulispoint(int N)
     {
         //WIP
     }
