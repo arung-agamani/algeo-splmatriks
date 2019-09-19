@@ -136,4 +136,48 @@ public class Matriks {
         }
         return isTrue;
     }
+
+    public float Determinan(Matriks Mber,MatrixDimension md)
+    /* Prekondisi: PERSEGI*/
+    {
+        float det=1;
+        float ratio=1;
+        int m,i,j,k,temp;
+        for(k=1;k<=md.row;k++)
+        {
+            m=k;//marker
+            for(i=k;i<=md.row;k++)
+            {
+                if (abs(Mber.mat[i][k]) > (Mber.mat[m][k])
+                {
+                    m = i;//set new marker
+                }
+                if (m != k)
+                {
+                    for (j=k;j<=GetLastIdxKol(Mvic);j++) // tukar baris
+                    {
+                        temp = Mber.mat[k][j];
+                        Mber.mat[k][j]=Mber.mat[m][j];
+                        Mber.mat[m][j]=temp;
+                    };
+                    det *= -1;
+                }
+                if (Mber.mat[k][k]==0)
+                {
+                    break;//jika diagonal ada yang 0
+                }
+                for (i=k+1;i<=md.row;i++)
+                {
+                    ratio = Mber.mat[i][k]/(float)Mber.mat[k][k];
+                    for (j=k;j<=md.col;j++)
+                    {
+                        Mber.mat[i][j] -= (ratio*Mber.mat[k][j]);
+                    }
+                }
+            }
+            det *= Mber.mat[k][k];
+        }
+        if det==0 det = 0;
+        return det;
+    }
 }
