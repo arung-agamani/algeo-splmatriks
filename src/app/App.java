@@ -31,6 +31,7 @@ public class App {
                     // System.out.println();
                 }
                 if (i == md.row - 1 && md.row == md.col - 1) {
+                    System.out.println("INVOKED");
                     if (mat.Mat[i][i] == 1) {
                         if (mat.Mat[i][i + 1] > 0) {
                             mat.tulisMatriks(md.row, md.col);
@@ -38,7 +39,7 @@ public class App {
                             break;
                         } else if (mat.Mat[i][i + 1] == 0) {
                             mat.tulisMatriks(md.row, md.col);
-                            System.out.println("Solusi banyak!");
+                            System.out.println("Ada solusi!");
                             break;
                         } else {
                             mat.tulisMatriks(md.row, md.col);
@@ -47,27 +48,26 @@ public class App {
                         }
                     }
                 }
-                
-                for (int k = i + 1; k < md.row; k++) {
-                    while(mat.Mat[k][i] != 0) {
-                        if (mat.Mat[k][i] > 0) {
-                            mat.AddOrSubstractRows(false, i+1, k+1, mat);
-                        } else if (mat.Mat[k][i] < 0) {
-                            mat.AddOrSubstractRows(true, i+1, k+1, mat);
+                for (int k = i - 1; k >= 0; k--) {
+                        while(mat.Mat[k][i] != 0) {
+                            if (mat.Mat[k][i] > 0) {
+                                mat.AddOrSubstractRows(false, i+1, k+1, mat);
+                            } else if (mat.Mat[k][i] < 0) {
+                                mat.AddOrSubstractRows(true, i+1, k+1, mat);
+                            }
+                            mat.tulisMatriks(md.row, md.col);
+                            System.out.println();
                         }
-                        // mat.tulisMatriks(md.row, md.col);
-                        // System.out.println();
-                        
+                        if (mat.CheckIfHasZeroRows(mat, md)) {
+                            mat.tulisMatriks(md.row, md.col);
+                            System.out.println("Solusi banyak!");
+                            i = md.row;
+                            break;
+                        }
                     }
-                    if (mat.CheckIfHasZeroRows(mat, md)) {
-                        mat.tulisMatriks(md.row, md.col);
-                        System.out.println("Solusi banyak!");
-                        i = md.row;
-                        break;
-                    }
-                }
+                
                 if (!mat.CheckIfHasZeroRows(mat, md)) {
-                    for (int k = i - 1; k >= 0; k--) {
+                    for (int k = i + 1; k < md.row; k++) {
                         while(mat.Mat[k][i] != 0) {
                             if (mat.Mat[k][i] > 0) {
                                 mat.AddOrSubstractRows(false, i+1, k+1, mat);
@@ -76,6 +76,7 @@ public class App {
                             }
                             // mat.tulisMatriks(md.row, md.col);
                             // System.out.println();
+                            
                         }
                         if (mat.CheckIfHasZeroRows(mat, md)) {
                             mat.tulisMatriks(md.row, md.col);

@@ -1,7 +1,6 @@
 package components;
 
 import java.lang.Math;
-import java.util.Arrays;
 
 public class Matriks {
     //atribut
@@ -123,6 +122,16 @@ public class Matriks {
             if (rowClear) {
                 isTrue = true;
                 break;
+            }
+        }
+        return isTrue;
+    }
+
+    public Boolean CheckIfNotZeroUpperCol(Matriks targetMatriks, MatrixDimension md, int col) {
+        boolean isTrue = true;
+        for (int i = 0; i < md.row; i++) {
+            if (targetMatriks.Mat[i][col] != 0) {
+                isTrue = false;
             }
         }
         return isTrue;
