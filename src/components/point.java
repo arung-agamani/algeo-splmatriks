@@ -3,22 +3,22 @@ package components;
 import java.lang.Math;
 import java.util.Arrays;
 
-public class point{
+public class Point{
     public class Pt{ //inisiasi interpolarisasi
         float x;
         float y;
     }
-    public class tonsOfPts{
+    public class TonsOfPts{
         Pt[] Pt;
         int ptEff;
     }
 
     public point (int a){ //constructor:
-        this.tonsOfPts = new tonsOfPts.Pt[a];
+        this.TonsOfPts = new TonsOfPts.Pt[a];
         for (int i=0;i<a;i++){
-            this.tonsOfPts.Pt[i.x]=0;
-            this.tonsOfPts.Pt[i.y]=0;
-            this.tonsOfPts.ptEff = a;
+            this.TonsOfPts.Pt[i.x]=0;
+            this.TonsOfPts.Pt[i.y]=0;
+            this.TonsOfPts.ptEff = a;
         }
     }
 
@@ -28,42 +28,34 @@ public class point{
         int i;//STILL WIP
         for (i=0;i<N;i++)
         {
-            this.tonsOfPts.Pt[i.x]=i;
-            this.tonsOfPts.Pt[i.x]=i+1;
-            this.tonsOfPts.ptEff += 1;
+            this.TonsOfPts.Pt[i.x]=i;
+            this.TonsOfPts.Pt[i.x]=i+1;
+            this.TonsOfPts.ptEff += 1;
         }//random banget angkatnya
     }
 
 
-    public void ConvertToMatrix (tonsOfPts points1,Matriks Mattbro) {
+    public void ConvertToMatrix (TonsOfPts points1,Matriks Matout,MatrixDimension md) {
         //konversi kedalam bentuk a0 + a1*x + a2*x^2 +...+an*x^(n-1) = y
-        // ITS ****ING WIP
-        int Row,Col,i,j;
+        int i,j;
         Matriks(points1.ptEff-1,points1.ptEff)//augmented matriks
-        Row = points1.ptEff-1;
-        Col = points1.ptEff;
-        for (i=0;i<=Row;i++)
+        md.row = points1.ptEff-1;
+        md.col = points1.ptEff;
+        for (i=0;i<=md.row;i++)
         {
-            for (j=0;j<=Col;j++)
+            for (j=0;j<=md.col;j++)
             {
-                if(j == Col)
+                if(j == md.col)
                 {
-                    this.Mattbro[i][j] = points1.Pt[i.y];
+                    this.Matout[i][j] = points1.Pt[i.y];
                 }
                 else
                 {
-                    this.Mattbro[i][j] = 1 * points1.Pt[i.x]^(j);
+                    this.Matout[i][j] = 1 * points1.Pt[i.x]^(j);
                 }
             }
         }
 
-    }
-
-
-    public void interpolasi (Matriks Mattbro, float X){
-        //membentuk matriks eschelon tereduksi dengan Gauss-Jordan elemination
-        //lalu hasil dari metode dipindah ke dalam array
-        float tempArray[]
     }
 }
     
