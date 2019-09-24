@@ -30,17 +30,35 @@ public class MatriksKofaktor {
        }  
                 
               
-    public Float DeterminanKofaktor(){
+        public Float DeterminanKofaktor(Matriks matriks,int col, int row){
     //jika sudah 2x2
-    if (md.col == 2 && md.row == 2){
-        return (mat.Mat[0][0]*mat.Mat[1][1])-(mat.Mat[0][1]*mat.Mat[1][0]);
+    if (col == 2 && row == 2){
+        return (matriks.Mat[0][0]*matriks.Mat[1][1])-(matriks.Mat[0][1]*matriks.Mat[1][0]);
     }
-      
-    float det = 0;   
-     det += mat.Mat[1][0] * this.MatriksKecil(md.col, md.row).DeterminanKofaktor();  //ini ga tau error kenape :()
-     return det;
+        
+    float detkof =0; 
+    for (int i=0; i<col; i++) { 
+        detkof += (i % 2 == 0 ? 1 : -1) * mat.Mat[0][i] * DeterminanKofaktor(MatriksKecil(matriks.Mat, 0, i)); //error
+        }
+        return detkof;
+
+    
     
     }
 
+
+
+public Matriks Invers(Matriks matriks, int col, int row){
+    float det = 1/DeterminanKofaktor(matriks, col, row);
+        Matriks invers = new Matriks(row,col);
+        matriks.transpose(row, col, matriks.Mat);       
+
+    for (int i=0;i<col;i++){
+        for (int j=0;j<row;j++){
+            invers.Mat[i][j] = matriks.Mat[i][j]*det;
+        }
+
+    }
+return invers;
 }
-    
+}
