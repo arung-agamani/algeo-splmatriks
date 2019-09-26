@@ -133,6 +133,7 @@ public class App {
             Matriks loc = BacaMatriks();
             MatrixDimension md = BacaUkuranMatriks();
             float det = MatriksKofaktor.DeterminanKofaktor(loc, md.col);
+            System.out.print("Determinan matriks ialah : ");
             System.out.println(det);
             break;
         

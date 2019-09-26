@@ -49,7 +49,7 @@ public class MatriksKofaktor {
 
 
 public static Matriks Invers(Matriks matriks, int order){
-    float det = 1/DeterminanKofaktor(matriks, order, order);
+    float det = 1/DeterminanKofaktor(matriks, order);
         Matriks invers = new Matriks(order, order);
         matriks.transpose(order, order, matriks.Mat);       
 
