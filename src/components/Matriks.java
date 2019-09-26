@@ -184,62 +184,6 @@ public class Matriks {
         return det;
     }
 
-    public void interpolasi (Matriks matin, MatrixDimension md, Matriks matout){
-        //membentuk matriks eschelon tereduksi dengan Gauss-Jordan elemination
-        //lalu hasil dari metode dipindah ke dalam "array" (padahal pake matriks 1xn )
-        int i,j;
-
-        //ini diisi dengan OBE dengan Gauss-Jordan
-        for (i=0;i<md.row;i++)
-        {
-            if (matin.Mat[i][i] != 1)
-            {
-                matin.SwitchRows(matin, matin.SearchForClosestToZero(matin, md, i + 1, i+1), i + 1); 
-            }
-            if (matin.Mat[i][i] != 1)
-            {
-                matin.ConstantMultRow(matin, i + 1 , matin.Mat[i][i], md);
-            }
-            for (int k = i - 1; k >= 0; k--)
-            {
-                while(matin.Mat[k][i] != 0)
-                {
-                    if (matin.Mat[k][i] > 0)
-                    {
-                        matin.AddOrSubstractRows(false, i+1, k+1, matin);
-                    } 
-                    else if (matin.Mat[k][i] < 0)
-                    {
-                        matin.AddOrSubstractRows(true, i+1, k+1, matin);
-                    }
-                }
-            }
-            if (!matin.CheckIfHasZeroRows(matin, md))
-            {
-                for (int k = i + 1; k < md.row; k++)
-                {
-                    while(matin.Mat[k][i] != 0)
-                    {
-                        if (matin.Mat[k][i] > 0)
-                        {
-                            matin.AddOrSubstractRows(false, i+1, k+1, matin);
-                        } 
-                        else if (matin.Mat[k][i] < 0)
-                        {
-                            matin.AddOrSubstractRows(true, i+1, k+1, matin);
-                        }
-                    }
-                }
-            }
-        }
-        //tolong dicek lagi gw cuma nyolong sendal dari App.java
-
-        for (i=0;i<md.row;i++)
-        {
-            matout.Mat[1][i] = matin.Mat[i][md.col];//mengisi polinom interpolasi dari hasil OBE
-        }//ia gw mager bkin class baru cuma buat array, lagipula kan matriks itu array of array tapi pake 1 array baris
-        //-Filbert
-    }
     public float HasilInterpolasi(float x,Matriks mat,MatrixDimension md)
     //md dari ukuran array interpolasi
     {
