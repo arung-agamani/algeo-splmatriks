@@ -44,7 +44,11 @@ public class App {
                 break;
 
                 case "5":
-                PrintSPLMenu();
+                Matriks res2 = BacaMatriks();
+                MatrixDimension md2 = BacaUkuranMatriks();
+                Matriks adj = MatriksKofaktor.MakeKofaktor(res2, md2.col);
+                adj.transpose(md2.col, md2.col, adj.Mat);
+                adj.tulisMatriks(md2.col, md2.col);
                 break;
 
                 case "6":
@@ -152,7 +156,10 @@ public class App {
         String choice = sc.nextLine();
         switch (choice) {
             case "1":
-                
+            Matriks loc0 = BacaMatriks();
+            MatrixDimension md0 = BacaUkuranMatriks();
+            Matriks inv = GaussJordan.InverseJordan(loc0, md0);
+            inv.tulisMatriks(md0.row, md0.col);
             break;
 
             case "2":
