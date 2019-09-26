@@ -63,5 +63,29 @@ public class TextReader {
         MatrixDimension md = new MatrixDimension(countRow, countCol);
         return md;
     }
-      
+    
+    public Point ReadFileToPoints(String path) throws FileNotFoundException {
+        File file = new File(path);
+        Scanner sc = new Scanner(file);
+        String delimiter, tempArray[];
+        MatrixDimension md = this.CheckDataLength(path);
+        Point result = new Point(md.row);
+        int iter;
+        boolean isy;
+        delimiter = " ";
+
+        iter = 0;
+        while(sc.hasNextLine()) {
+            String line = sc.nextLine();
+            tempArray = line.split(delimiter);
+            for (int i = 0; i < tempArray.length; i++) {
+                result.Pt[iter].x = (float)Integer.parseInt(tempArray[0]);
+                result.Pt[iter].y = (float)Integer.parseInt(tempArray[1]);
+            }
+            iter += 1;
+        }
+        sc.close();
+
+        return result;
+    }
 }

@@ -52,6 +52,9 @@ public class App {
                 break;
 
                 case "6":
+                Point inter = BacaPoint();
+                MatrixDimension md3 = BacaUkuranPoint();
+                
                 PrintSPLMenu();
                 break;
 
@@ -202,6 +205,20 @@ public class App {
         md = tRead.CheckDataLength("./src/components/data.txt");
         return md;
     }
+
+    public static Point BacaPoint() throws FileNotFoundException {
+        TextReader tRead = new TextReader();
+        Point pointa;
+        pointa = tRead.ReadFileToPoints("./src/components/data2.txt");
+        return pointa;
+    }
+
+    public static MatrixDimension BacaUkuranPoint() throws FileNotFoundException {
+        TextReader tRead = new TextReader();
+        MatrixDimension md;
+        md = tRead.CheckDataLength("./src/components/data2.txt");
+        return md;
+    }//ini tester
 
     public static void GaussJordanResult(Matriks mat, MatrixDimension md) {
         int i, j;
