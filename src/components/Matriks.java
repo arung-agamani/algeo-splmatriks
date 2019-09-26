@@ -139,10 +139,55 @@ public class Matriks {
         return isTrue;
     }
 
+    public float Determinan(Matriks Mber,MatrixDimension md)
+    /* Prekondisi: PERSEGI*/
+    {
+        float det=1;
+        float ratio=1;
+        int m,i,j,k;
+        float temp;
+        for(k=0;k<md.row;k++)
+        {
+            m=k;//marker
+            for(i=k;i<md.row;k++)
+            {
+                if (Math.abs(Mber.Mat[i][k]) > (Mber.Mat[m][k]))
+                {
+                    m = i;//set new marker
+                }
+                if (m != k)
+                {
+                    for (j=k;j<md.col;j++) // tukar baris
+                    {
+                        temp = Mber.Mat[k][j];
+                        Mber.Mat[k][j]=Mber.Mat[m][j];
+                        Mber.Mat[m][j]=temp;
+                    };
+                    det *= -1;
+                }
+                if (Mber.Mat[k][k]==0)
+                {
+                    break;//jika diagonal ada yang 0
+                }
+                for (i=k+1;i<md.row;i++)
+                {
+                    ratio = Mber.Mat[i][k]/(float)Mber.Mat[k][k];
+                    for (j=k;j<md.col;j++)
+                    {
+                        Mber.Mat[i][j] -= (ratio*Mber.Mat[k][j]);
+                    }
+                }
+            }
+            det *= Mber.Mat[k][k];
+        }
+        if (det==0) det = 0;
+        return det;
+    }
+
     public void interpolasi (Matriks matin, MatrixDimension md, Matriks matout){
         //membentuk matriks eschelon tereduksi dengan Gauss-Jordan elemination
         //lalu hasil dari metode dipindah ke dalam "array" (padahal pake matriks 1xn )
-        int i,j
+        int i,j;
 
         //ini diisi dengan OBE dengan Gauss-Jordan
         for (i=0;i<md.row;i++)
@@ -199,9 +244,9 @@ public class Matriks {
     //md dari ukuran array interpolasi
     {
         float hasil=0;
-        for (i=0;i<=md.col;i++)
+        for (int i=0;i<=md.col;i++)
         {
-            hasil += mat.Mat[1][i]*(x^i);
+            hasil += mat.Mat[1][i]*(Math.pow(x, i));
         }
         return hasil;
     }

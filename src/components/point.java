@@ -15,7 +15,7 @@ public class Point{
     public TonsOfPts points;
 
     public point (int a){ //constructor:
-        this.TonsOfPts = new TonsOfPts.Pt[a];
+        this.points = new points.Pt[a];
         for (int i=0;i<a;i++){
             this.points.Pt[i.x]=0;
             this.points.Pt[i.y]=0;
