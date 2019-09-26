@@ -129,11 +129,25 @@ public class App {
         String choice = sc.nextLine();
         switch (choice) {
             case "1":
-                
+            Matriks loc0 = BacaMatriks();
+            MatrixDimension md0 = BacaUkuranMatriks();
+            GaussJordan.GaussJordanDet(loc0, md0);
+            float det0 = 1;
+            for (int i = 0; i < md0.row; i++) {
+                det0 *= loc0.Mat[i][i];
+            }
+            System.out.println("Determinan : " + det0);
             break;
 
             case "2":
-            
+            Matriks loc1 = BacaMatriks();
+            MatrixDimension md1 = BacaUkuranMatriks();
+            GaussJordan.GaussJordanDet(loc1, md1);
+            float det1 = 1;
+            for (int i = 0; i < md1.row; i++) {
+                det1 *= loc1.Mat[i][i];
+            }
+            System.out.println("Determinan : " + det1);
             break;
 
             case "3":
