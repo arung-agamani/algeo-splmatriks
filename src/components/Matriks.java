@@ -35,7 +35,7 @@ public class Matriks {
 
         for (i=0; i<N; i++) {
             for (j=0; j<M; j++) {
-                System.out.print(this.Mat[i][j] + " ");
+                System.out.print(round2(this.Mat[i][j], 2) + " ");
             }
             System.out.println();
         }
