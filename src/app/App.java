@@ -27,11 +27,13 @@ public class App {
                 break;
 
                 case "2":
-                PrintSPLMenu();
+                PrintDeterminanMenu();
+                BacaDeterminanMenu();
                 break;
 
                 case "3":
-                PrintSPLMenu();
+                PrintInversMenu();
+                BacaInversMenu();
                 break;
 
                 case "4":
@@ -76,6 +78,17 @@ public class App {
         System.out.println("4. Kaidah Kramer");
     }
 
+    public static void PrintDeterminanMenu() {
+        System.out.println("1. Metode Eliminasi Gauss");
+        System.out.println("2. Metode Eliminasi Gauss-Jordan");
+        System.out.println("3. Metode Kofaktor");
+    }
+
+    public static void PrintInversMenu() {
+        System.out.println("1. Metode Eliminasi Gauss-Jordan");
+        System.out.println("2. Metode Adjoint");
+    }
+
     public static void BacaSPLMenu() throws FileNotFoundException {
         System.out.print(">> ");
         Scanner sc = new Scanner(System.in);        
@@ -103,6 +116,51 @@ public class App {
         }
     }
 
+    public static void BacaDeterminanMenu() throws FileNotFoundException {
+        System.out.print(">> ");
+        Scanner sc = new Scanner(System.in);        
+        String choice = sc.nextLine();
+        switch (choice) {
+            case "1":
+                
+            break;
+
+            case "2":
+            
+            break;
+
+            case "3":
+            Matriks loc = BacaMatriks();
+            MatrixDimension md = BacaUkuranMatriks();
+            float det = MatriksKofaktor.DeterminanKofaktor(loc, md.col);
+            System.out.println(det);
+            break;
+        
+            default:
+            System.out.println("Masukan anda tidak valid.");
+                break;
+        }
+    }
+
+    public static void BacaInversMenu() throws FileNotFoundException {
+        System.out.print(">> ");
+        Scanner sc = new Scanner(System.in);        
+        String choice = sc.nextLine();
+        switch (choice) {
+            case "1":
+                
+            break;
+
+            case "2":
+            
+            break;
+        
+            default:
+            System.out.println("Masukan anda tidak valid.");
+                break;
+        }
+    }
+
     public static void PerformGaussJordan() throws FileNotFoundException {
         TextReader tRead = new TextReader();
         Matriks localMat;
@@ -115,6 +173,20 @@ public class App {
         res = GaussJordan.CheckIfHasSolution(localMat, md, flag);
         localMat.tulisMatriks(md.row, md.col);
         GaussJordanResult(localMat, md);
+    }
+
+    public static Matriks BacaMatriks() throws FileNotFoundException {
+        TextReader tRead = new TextReader();
+        Matriks localMat;
+        localMat = tRead.ReadFileToMatrix("./src/components/data.txt");
+        return localMat;
+    }
+
+    public static MatrixDimension BacaUkuranMatriks() throws FileNotFoundException {
+        TextReader tRead = new TextReader();
+        MatrixDimension md;
+        md = tRead.CheckDataLength("./src/components/data.txt");
+        return md;
     }
 
     public static void GaussJordanResult(Matriks mat, MatrixDimension md) {

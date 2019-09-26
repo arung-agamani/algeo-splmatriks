@@ -1,60 +1,60 @@
 package components;
 
-public class MatriksKofaktor {
-    Matriks mat, temp, kofak;
-    TextReader tr = new TextReader();
-    MatrixDimension md;
-    
+public class MatriksKofaktor {   
 
     //fungsi ambil determinan dari matriks kecil  
-    public Matriks MatriksKecil(int row, int col ){  
+    public static void MatriksKecil(Matriks mat, Matriks kofak, int row, int col, int order){  
                
         int a = 0;  
         int b = 0;  
           
-        Matriks LittleMatriks = new Matriks(row-1, col-1);  
-          
-        for (int i = 0; i < row; i++) {  
-         if (i != row) {  
-          for (int j = 0; j < col; j++) {  
-           if (j != col) {  
-            LittleMatriks.Mat[a][b] = mat.Mat[i][j];b++;  
-           }  
-          }  
-          a++;  
-          b = 0;  
-         }  
-        }  
-        
-        return LittleMatriks;  
-       }  
+        for (int i = 0; i < order; i++) { 
+                for (int j = 0; j < order; j++) {  
+                    if (j != col && i != row) {  
+                        kofak.Mat[a][b] = mat.Mat[i][j];
+                        b++; 
+
+                        if (b == order - 1) {
+                            b = 0;
+                            a++;
+                        }
+                    }  
+                }  
+              
+        }    
+    }  
                 
               
-        public Float DeterminanKofaktor(Matriks matriks,int col, int row){
-    //jika sudah 2x2
-    if (col == 2 && row == 2){
-        return (matriks.Mat[0][0]*matriks.Mat[1][1])-(matriks.Mat[0][1]*matriks.Mat[1][0]);
-    }
-        
-    float detkof =0; 
-    for (int i=0; i<col; i++) { 
-        detkof += (i % 2 == 0 ? 1 : -1) * mat.Mat[0][i] * DeterminanKofaktor(MatriksKecil(mat, 0, i), i, i);
+    public static float DeterminanKofaktor(Matriks matriks,int order){
+        //jika sudah 2x2
+        if (order == 2){
+            return (matriks.Mat[0][0]*matriks.Mat[1][1])-(matriks.Mat[0][1]*matriks.Mat[1][0]);
+        } else {
+            float res = 0;
+            Matriks kofak = new Matriks(order, order);
+            int tanda = 1;
+            for (int i = 0; i < order; i++) {
+                MatriksKecil(matriks, kofak, 0, i, order);
+                res += tanda * matriks.Mat[0][i] * DeterminanKofaktor(kofak, order - 1);
+                tanda = -tanda;
+            }
+            return res;
         }
-        return detkof;
 
-    
+            
+        
     
     }
 
 
 
-public Matriks Invers(Matriks matriks, int col, int row){
-    float det = 1/DeterminanKofaktor(matriks, col, row);
-        Matriks invers = new Matriks(row,col);
-        matriks.transpose(row, col, matriks.Mat);       
+public static Matriks Invers(Matriks matriks, int order){
+    float det = 1/DeterminanKofaktor(matriks, order, order);
+        Matriks invers = new Matriks(order, order);
+        matriks.transpose(order, order, matriks.Mat);       
 
-    for (int i=0;i<col;i++){
-        for (int j=0;j<row;j++){
+    for (int i=0;i<order;i++){
+        for (int j=0;j<order;j++){
             invers.Mat[i][j] = matriks.Mat[i][j]*det;
         }
 
