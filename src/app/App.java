@@ -102,7 +102,9 @@ public class App {
         String choice = sc.nextLine();
         switch (choice) {
             case "1":
-                
+            Matriks loc = BacaMatriks();
+            MatrixDimension md = BacaUkuranMatriks();
+            PerformGaussSPL(loc, md);
             break;
 
             case "2":
@@ -116,7 +118,9 @@ public class App {
             break;
 
             case "4":
-            
+            Matriks loc1 = BacaMatriks();
+            MatrixDimension md1 = BacaUkuranMatriks();
+            PerformCramerRuleSPL(loc1, md1);
             break;
         
             default:
@@ -191,6 +195,22 @@ public class App {
         }
     }
 
+    public static void PerformGaussSPL(Matriks mat, MatrixDimension md) {
+        GaussJordan.GaussJordanElimination(mat, md);
+        float res[] = new float[md.col - 1];
+        for (int i = md.col - 2; i >= 0; i--) {
+            float sum = 0;
+            for (int j = i + 1; j < md.col - 1; j++) {
+                sum += mat.Mat[i][j] * res[j];
+            }
+            res[i] = (mat.Mat[i][md.col - 1] - sum) / mat.Mat[i][i];
+        }
+        for (int i = 0; i < md.col - 1; i++) {
+            System.out.println("x" + (i + 1) + " = " + res[i]);
+        }
+    }
+
+    
     public static void PerformGaussJordan() throws FileNotFoundException {
         TextReader tRead = new TextReader();
         Matriks localMat;
@@ -223,12 +243,29 @@ public class App {
                 for (int i = 0; i < md.row; i++) {                
                     res += inv_a.Mat[row][i] * b.Mat[i][0];
                 }
-                System.out.println("x" + j + " = " + Matriks.round2(res, 2));
+                System.out.println("x" + (j+1) + " = " + Matriks.round2(res, 2));
                 row += 1;
             }
             
         } else {
             System.out.println("Invers tidak dapat dilakukan. Solusi akan berbentuk parametrik atau tidak ada solusi unik.");
+        }
+    }
+
+    public static void PerformCramerRuleSPL(Matriks mat, MatrixDimension md) {
+        Matriks a = new Matriks(md.row, md.col - 1);
+        Matriks b = new Matriks(md.row, 1);
+        if (md.row == md.col - 1) {
+            for (int i = 0; i < md.row; i++) {
+                for (int j = 0; j < md.row; j++) {
+                    a.Mat[i][j] = mat.Mat[i][j];
+                }
+                b.Mat[i][0] = mat.Mat[i][md.col-1];
+            }
+            Kramer.cramer(a, b, md.row);
+            
+        } else {
+            System.out.println("Aturan tidak dapat dilakukan. Solusi akan berbentuk parametrik atau tidak ada solusi unik.");
         }
     }
 
