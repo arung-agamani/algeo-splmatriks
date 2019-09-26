@@ -2,14 +2,15 @@ package components;
 
 public class Kramer{
 
-    public static float cramer(Matriks mat,Matriks nilai,int order){
-        
+    public static void cramer(Matriks mat,Matriks nilai,int order){
         float detcram = 0;
         for (int i=0;i< order;i++ ){
-        detcram += MatriksKofaktor.DeterminanKofaktor(mat, order) + MatriksKofaktor.DeterminanKofaktor(Cramerbagian(mat, order, i), order);  
+            detcram = MatriksKofaktor.DeterminanKofaktor(Cramerbagian(mat, order, i), order)/MatriksKofaktor.DeterminanKofaktor(mat, order);  
+            System.out.print("x"+i+" ="+detcram);
         }
-        return detcram;
-        }
+    }
+    
+
     
 
 
@@ -25,6 +26,14 @@ public class Kramer{
                 }
             }
         }
+<<<<<<< HEAD
         return cram;    
     }
 }
+=======
+    } return cram;    
+
+
+}
+}
+>>>>>>> 2edc1f1322628093df072e50ff5f351e287260f4
