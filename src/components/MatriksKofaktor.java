@@ -39,26 +39,44 @@ public class MatriksKofaktor {
                 tanda = -tanda;
             }
             return res;
-        }
+        }  
+    }
 
-            
+    public static Matriks Invers(Matriks matriks, int order){
+        float det = DeterminanKofaktor(matriks, order);
+        Matriks adj = MakeKofaktor(matriks, order);
+        adj.transpose(order, order, adj.Mat);
+        for (int i = 0; i < order; i++) {
+            for (int j = 0; j < order; j++) {
+                adj.Mat[i][j] = adj.Mat[i][j] / det;
+            }
+        }
+        return adj;
         
-    
     }
 
+    public static Matriks MakeKofaktor(Matriks matriks, int order) {
 
-
-public static Matriks Invers(Matriks matriks, int order){
-    float det = 1/DeterminanKofaktor(matriks, order);
-        Matriks invers = new Matriks(order, order);
-        matriks.transpose(order, order, matriks.Mat);       
-
-    for (int i=0;i<order;i++){
-        for (int j=0;j<order;j++){
-            invers.Mat[i][j] = matriks.Mat[i][j]*det;
+        Matriks res = new Matriks(order, order);
+        Matriks temp = new Matriks(order - 1, order - 1);
+        int sign;
+        
+        for (int i = 0; i < order; i++) {
+            if (i % 2 == 0) {
+                sign = 1;
+            } else {
+                sign = -1;
+            }
+            for (int j = 0; j < order; j++) {
+                MatriksKecil(matriks, temp, i, j, order);
+                res.Mat[i][j] = sign * DeterminanKofaktor(temp, order - 1);
+                sign = -sign;
+            }
         }
 
+        return res;
     }
-return invers;
+
 }
-}
+
+

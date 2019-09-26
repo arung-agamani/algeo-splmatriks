@@ -37,7 +37,10 @@ public class App {
                 break;
 
                 case "4":
-                PrintSPLMenu();
+                Matriks res = BacaMatriks();
+                MatrixDimension md = BacaUkuranMatriks();
+                Matriks kofakRes = MatriksKofaktor.MakeKofaktor(res, md.col);
+                kofakRes.tulisMatriks(md.col, md.col);
                 break;
 
                 case "5":
@@ -153,7 +156,10 @@ public class App {
             break;
 
             case "2":
-            
+            Matriks loc = BacaMatriks();
+            MatrixDimension md = BacaUkuranMatriks();
+            Matriks adj = MatriksKofaktor.Invers(loc, md.col);
+            adj.tulisMatriks(md.col, md.col);
             break;
         
             default:
