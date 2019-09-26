@@ -1,7 +1,7 @@
 package components;
 
 import java.lang.Math;
-import java.util.Arrays;
+//import java.util.Arrays;
 
 public class Point{
     public class Pt{ //inisiasi interpolarisasi
@@ -14,11 +14,11 @@ public class Point{
     }
     public TonsOfPts points;
 
-    public point (int a){ //constructor:
-        this.points = new points.Pt[a];
+    public Point (int a){ //constructor:
+        this.points = new TonsOfPts();
         for (int i=0;i<a;i++){
-            this.points.Pt[i.x]=0;
-            this.points.Pt[i.y]=0;
+            this.points.Pt[i].x=0;
+            this.points.Pt[i].y=0;
             this.points.ptEff = a;
         }
     }
@@ -29,17 +29,17 @@ public class Point{
         int i;//STILL WIP
         for (i=0;i<N;i++)
         {
-            this.points.Pt[i.x]=i;
-            this.points.Pt[i.x]=i+1;
+            this.points.Pt[i].x=i;
+            this.points.Pt[i].y=i+1;
             this.points.ptEff += 1;
         }//random banget angkatnya
     }
 
 
-    public void ConvertToMatrix (TonsOfPts points1,Matriks Matout,MatrixDimension md) {
+    public void ConvertToMatrix (TonsOfPts points1,float Matout[][],MatrixDimension md) {
         //konversi kedalam bentuk a0 + a1*x + a2*x^2 +...+an*x^(n-1) = y
         int i,j;
-        Matriks(points1.ptEff-1,points1.ptEff)//augmented matriks
+        //augmented matriks asumsikan container matriks sudah dibuat
         md.row = points1.ptEff-1;
         md.col = points1.ptEff;
         for (i=0;i<=md.row;i++)
@@ -48,11 +48,11 @@ public class Point{
             {
                 if(j == md.col)
                 {
-                    this.Matout[i][j] = points1.Pt[i.y];
+                    Matout[i][j] = points1.Pt[i].y;
                 }
                 else
                 {
-                    this.Matout[i][j] = 1 * points1.Pt[i.x]^(j);
+                    Matout[i][j] = 1 * ((float)Math.pow(points1.Pt[i].x,j));
                 }
             }
         }
