@@ -144,13 +144,14 @@ public class Matriks {
     {
         float det=1;
         float ratio=1;
-        int m,i,j,k,temp;
+        int m,i,j,k;
+        float temp;
         for(k=0;k<md.row;k++)
         {
             m=k;//marker
             for(i=k;i<md.row;k++)
             {
-                if (abs(Mber.Mat[i][k]) > (Mber.Mat[m][k])
+                if (Math.abs(Mber.Mat[i][k]) > (Mber.Mat[m][k]))
                 {
                     m = i;//set new marker
                 }
@@ -179,14 +180,14 @@ public class Matriks {
             }
             det *= Mber.Mat[k][k];
         }
-        if det==0 det = 0;
+        if (det==0) det = 0;
         return det;
     }
 
     public void interpolasi (Matriks matin, MatrixDimension md, Matriks matout){
         //membentuk matriks eschelon tereduksi dengan Gauss-Jordan elemination
         //lalu hasil dari metode dipindah ke dalam "array" (padahal pake matriks 1xn )
-        int i,j
+        int i,j;
 
         //ini diisi dengan OBE dengan Gauss-Jordan
         for (i=0;i<md.row;i++)
@@ -243,9 +244,9 @@ public class Matriks {
     //md dari ukuran array interpolasi
     {
         float hasil=0;
-        for (i=0;i<=md.col;i++)
+        for (int i=0;i<=md.col;i++)
         {
-            hasil += mat.Mat[1][i]*(x^i);
+            hasil += mat.Mat[1][i]*(Math.pow(x, i));
         }
         return hasil;
     }
