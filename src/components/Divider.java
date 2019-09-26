@@ -12,7 +12,7 @@ public class Divider{
     }
     
     public static Matriks Nilai(Matriks matriks, int row , int col){
-        Matriks matnil = new Matriks(row,col-1);
+        Matriks matnil = new Matriks(row,1);
         for (int i=0;i<row;i++){
                 matnil.Mat[col][i] = matriks.Mat[col][i];              
             }
