@@ -146,4 +146,57 @@ public class GaussJordan {
         }
     }
 
+    public static Matriks InverseJordan(Matriks mat, MatrixDimension md) {
+        Matriks augmented = new Matriks(md.row, md.col * 2);
+        Matriks res = new Matriks(md.row, md.row);
+        int i, j, k = 0;
+        int c, flag = 0;
+        // fill
+        for (i = 0; i < md.row; i++) {
+            for (j = 0; j < md.col; j++) {
+                augmented.Mat[i][j] = mat.Mat[i][j];
+                if (i == j) {
+                    augmented.Mat[i][j + md.col] = 1;
+                } else {
+                    augmented.Mat[i][j + md.col] = 0;
+                }
+            }
+        }
+
+        // algh
+        for (i = 0; i < md.row; i++) {
+            if (augmented.Mat[i][i] == 0) {
+                c = 1;
+                while ((i + c) < md.row && augmented.Mat[i + c][i] == 0)
+                    c++;
+                if ((i + c) == md.row) {
+                    flag = 1;
+                    break;
+                }
+                for (j = i, k = 0; k < md.col*2; k++) {
+                    float temp = augmented.Mat[j][k];
+                    augmented.Mat[j][k] = augmented.Mat[j + c][k];
+                    augmented.Mat[j + c][k] = temp;
+                }
+            }
+            for (j = 0; j < md.row; j++) {
+                if (i != j) {
+                    float p = augmented.Mat[j][i] / augmented.Mat[i][i];
+                    for (k = 0; k < md.col*2; k++) {
+                        augmented.Mat[j][k] = augmented.Mat[j][k] - (augmented.Mat[i][k]) * p;
+                    }
+                }
+            }
+        }
+        Normalize(augmented, md);
+
+        for (i = 0; i < md.row; i++) {
+            for (j = 0; j < md.col; j++) {
+                res.Mat[i][j] = augmented.Mat[i][j + md.col];
+            }
+        }
+        
+        return res;
+    }
+
 }
