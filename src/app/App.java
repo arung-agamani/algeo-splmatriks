@@ -6,14 +6,16 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class App {
+    static Scanner sc;
     public static void main(String[] args) throws Exception {
         boolean isDone;
-
+        sc = new Scanner(System.in);
+        
 
         // MULAI
         isDone = false;
-        while (!isDone) {
-            Scanner sc = new Scanner(System.in);
+        do {
+            
             String choice;
             PrintMenu();
             System.out.print(">> ");
@@ -45,7 +47,7 @@ public class App {
                 break;
 
                 case "7":
-                PrintSPLMenu();
+                isDone = true;
                 break;
             
                 default:
@@ -53,8 +55,7 @@ public class App {
                     break;
             }
 
-        }
-        
+        } while (!isDone);
     }
 
     public static void PrintMenu() {
@@ -79,7 +80,6 @@ public class App {
         System.out.print(">> ");
         Scanner sc = new Scanner(System.in);        
         String choice = sc.nextLine();
-        sc.close();
         switch (choice) {
             case "1":
                 
