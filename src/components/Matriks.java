@@ -184,7 +184,7 @@ public class Matriks {
         return det;
     }
 
-    public float HasilInterpolasi(float x,Matriks mat,MatrixDimension md)
+    public static float HasilInterpolasi(float x,Matriks mat,MatrixDimension md)
     //md dari ukuran array interpolasi
     {
         float hasil=0;

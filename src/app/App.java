@@ -53,9 +53,9 @@ public class App {
                 break;
 
                 case "6":
-                TonsOfPts inter = BacaPoint();
+                Point inter = BacaPoint();
                 MatrixDimension md3 = BacaUkuranPoint();
-                Matriks arrayinter;
+                Matriks arrayinter = new Matriks(1,md3.col);
                 float x,hasilinter;
                 Scanner s = new Scanner(System.in); 
                 Point.Interpolasi(inter,arrayinter);

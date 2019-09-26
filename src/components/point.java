@@ -36,7 +36,7 @@ public class Point{
     }
 
 
-    public void Interpolasi (TonsOfPts points1,Matriks anarray) {
+    public static void Interpolasi (Point points1,Matriks anarray) {
         //konversi kedalam bentuk a0 + a1*x + a2*x^2 +...+an*x^(n-1) = y
         //LANGSUNG HAJAR KE ARRAY
         int i,j;
