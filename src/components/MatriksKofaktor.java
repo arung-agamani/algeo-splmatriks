@@ -38,7 +38,7 @@ public class MatriksKofaktor {
         
     float detkof =0; 
     for (int i=0; i<col; i++) { 
-        detkof += (i % 2 == 0 ? 1 : -1) * mat.Mat[0][i] * DeterminanKofaktor(MatriksKecil(matriks.Mat, 0, i)); //error
+        detkof += (i % 2 == 0 ? 1 : -1) * mat.Mat[0][i] * DeterminanKofaktor(MatriksKecil(mat, 0, i), i, i);
         }
         return detkof;
 
