@@ -6,7 +6,7 @@ public class Kramer{
         float detcram = 0;
         for (int i=0;i< order;i++ ){
             detcram = MatriksKofaktor.DeterminanKofaktor(Cramerbagian(mat, order, i), order)/MatriksKofaktor.DeterminanKofaktor(mat, order);  
-            System.out.print("x"+i+" ="+detcram);
+            System.out.println("x"+(i + 1)+" = "+detcram);
         }
     }
 
