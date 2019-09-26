@@ -2,6 +2,8 @@ package components;
 
 import java.lang.Math;
 
+import components.Point.TonsOfPts;
+
 public class Matriks {
     //atribut
     public float[][] Mat;
@@ -237,4 +239,15 @@ public class Matriks {
         }//ia gw mager bkin class baru cuma buat array, lagipula kan matriks itu array of array tapi pake 1 array baris
         //-Filbert
     }
+    public float HasilInterpolasi(float x,Matriks mat,MatrixDimension md)
+    //md dari ukuran array interpolasi
+    {
+        float hasil=0;
+        for (i=0;i<=md.col;i++)
+        {
+            hasil += mat.Mat[1][i]*(x^i);
+        }
+        return hasil;
+    }
 }
+
