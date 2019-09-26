@@ -104,7 +104,7 @@ public class Matriks {
 
     public void ConstantMultRow(Matriks targetMatriks, int targetRow, float mult, MatrixDimension md) {
         for (int i = 0; i < md.col; i++) {
-            targetMatriks.Mat[targetRow-1][i] = Math.round(targetMatriks.Mat[targetRow-1][i] * (1/mult)) ;
+            targetMatriks.Mat[targetRow-1][i] = round2(targetMatriks.Mat[targetRow-1][i] * (1/mult), 2) ;
         }
     }
 

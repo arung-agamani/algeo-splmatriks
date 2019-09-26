@@ -2,100 +2,170 @@ package app;
 
 import components.*;
 
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        TextReader tr = new TextReader();
+        boolean isDone;
+
+
+        // MULAI
+        isDone = false;
+        while (!isDone) {
+            Scanner sc = new Scanner(System.in);
+            String choice;
+            PrintMenu();
+            System.out.print(">> ");
+            choice = sc.nextLine();
+            switch (choice) {
+                case "1":
+                PrintSPLMenu();
+                BacaSPLMenu();
+                break;
+
+                case "2":
+                PrintSPLMenu();
+                break;
+
+                case "3":
+                PrintSPLMenu();
+                break;
+
+                case "4":
+                PrintSPLMenu();
+                break;
+
+                case "5":
+                PrintSPLMenu();
+                break;
+
+                case "6":
+                PrintSPLMenu();
+                break;
+
+                case "7":
+                PrintSPLMenu();
+                break;
+            
+                default:
+                System.out.println("Masukan anda tidak valid.");
+                    break;
+            }
+
+        }
+        
+    }
+
+    public static void PrintMenu() {
+        System.out.println("MENU");
+        System.out.println("1. Sistem Persamaan Linier");
+        System.out.println("2. Determinan");
+        System.out.println("3. Matriks Balikan");
+        System.out.println("4. Matriks Kofaktor");
+        System.out.println("5. Adjoin");
+        System.out.println("6. Interpolasi Polinom");
+        System.out.println("7. Keluar");
+    }
+
+    public static void PrintSPLMenu() {
+        System.out.println("1. Metode Eliminasi Gauss");
+        System.out.println("2. Metode Eliminasi Gauss-Jordan");
+        System.out.println("3. Metode Matriks Balikan");
+        System.out.println("4. Kaidah Kramer");
+    }
+
+    public static void BacaSPLMenu() throws FileNotFoundException {
+        System.out.print(">> ");
+        Scanner sc = new Scanner(System.in);        
+        String choice = sc.nextLine();
+        sc.close();
+        switch (choice) {
+            case "1":
+                
+            break;
+
+            case "2":
+            PerformGaussJordan();
+            break;
+
+            case "3":
+            
+            break;
+
+            case "4":
+            
+            break;
+        
+            default:
+            System.out.println("Masukan anda tidak valid.");
+                break;
+        }
+    }
+
+    public static void PerformGaussJordan() throws FileNotFoundException {
+        TextReader tRead = new TextReader();
+        Matriks localMat;
         MatrixDimension md;
-        Matriks mat;
-        System.out.println("Hello Java");
-        System.out.println("This is a boilerplate project for Tubes Algeo 1. Have fun!");
-        System.out.println("And good luck...");
-        md = tr.CheckDataLength("./src/components/data.txt");
-        mat = tr.ReadFileToMatrix("./src/components/data.txt");
-        System.out.println("Input matriks : ");
-        mat.tulisMatriks(md.row, md.col);
-        System.out.println("Output matriks setelah eleminasi Gauss-Jordan : ");
-        // Algoritma Gauss-Jordan elimination
-        for (int i  = 0; i < md.row; i++) {
-                // System.out.println();
-                // mat.tulisMatriks(md.row, md.col);
-                if (mat.Mat[i][i] != 1) {
-                    mat.SwitchRows(mat, mat.SearchForClosestToZero(mat, md, i + 1, i+1), i + 1);
-                    // System.out.println("switched + ");
-                    // mat.tulisMatriks(md.row, md.col);
-                    // System.out.println();
+        int flag, res;
+        
+        localMat = tRead.ReadFileToMatrix("./src/components/data.txt");
+        md = tRead.CheckDataLength("./src/components/data.txt");
+        flag = GaussJordan.GaussJordanElimination(localMat, md);
+        res = GaussJordan.CheckIfHasSolution(localMat, md, flag);
+        localMat.tulisMatriks(md.row, md.col);
+        GaussJordanResult(localMat, md);
+    }
+
+    public static void GaussJordanResult(Matriks mat, MatrixDimension md) {
+        int i, j;
+        float sum = 0;
+        int countSol;
+        countSol = 0;
+        for (j = 0; j < md.col; j++) {
+            sum = 0;
+            for (i = 0; i < md.row; i++) {                
+                sum += mat.Mat[i][j];
+            }
+            if (sum == 0 || sum == 1) {
+                countSol +=1;
+            } 
+            /* if (sum == 1) {
+                System.out.print("x");
+                System.out.print(j + 1);
+                System.out.print(" memiliki solusi : ");
+                System.out.println(mat.Mat[j][md.col-1]);
+            } else if (sum == 0) {
+                System.out.print("x");
+                System.out.print(j+1);
+                System.out.println(" memiliki solusi parametrik");                
+            } */
+            
+        }
+        if (countSol == md.col - 1){
+            for (j = 0; j < md.col; j++) {
+                sum = 0;
+                for (i = 0; i < md.row; i++) {                
+                    sum += mat.Mat[i][j];
                 }
-                if (mat.Mat[i][i] != 1) {
-                    mat.ConstantMultRow(mat, i + 1 , mat.Mat[i][i], md);
-                    // mat.tulisMatriks(md.row, md.col);
-                    // System.out.println();
-                }
-                if (i == md.row - 1 && md.row == md.col - 1) {
-                    System.out.println("INVOKED");
-                    if (mat.Mat[i][i] == 1) {
-                        if (mat.Mat[i][i + 1] > 0) {
-                            mat.tulisMatriks(md.row, md.col);
-                            System.out.println("Ada solusi!");
-                            break;
-                        } else if (mat.Mat[i][i + 1] == 0) {
-                            mat.tulisMatriks(md.row, md.col);
-                            System.out.println("Ada solusi!");
-                            break;
-                        } else {
-                            mat.tulisMatriks(md.row, md.col);
-                            System.out.println("tidak ada solusi");
-                            break;
-                        }
-                    }
-                }
-                for (int k = i - 1; k >= 0; k--) {
-                        while(mat.Mat[k][i] != 0) {
-                            if (mat.Mat[k][i] > 0) {
-                                mat.AddOrSubstractRows(false, i+1, k+1, mat);
-                            } else if (mat.Mat[k][i] < 0) {
-                                mat.AddOrSubstractRows(true, i+1, k+1, mat);
-                            }
-                            mat.tulisMatriks(md.row, md.col);
-                            System.out.println();
-                        }
-                        if (mat.CheckIfHasZeroRows(mat, md)) {
-                            mat.tulisMatriks(md.row, md.col);
-                            System.out.println("Solusi banyak!");
-                            i = md.row;
-                            break;
-                        }
-                    }
-                
-                if (!mat.CheckIfHasZeroRows(mat, md)) {
-                    for (int k = i + 1; k < md.row; k++) {
-                        while(mat.Mat[k][i] != 0) {
-                            if (mat.Mat[k][i] > 0) {
-                                mat.AddOrSubstractRows(false, i+1, k+1, mat);
-                            } else if (mat.Mat[k][i] < 0) {
-                                mat.AddOrSubstractRows(true, i+1, k+1, mat);
-                            }
-                            // mat.tulisMatriks(md.row, md.col);
-                            // System.out.println();
-                            
-                        }
-                        if (mat.CheckIfHasZeroRows(mat, md)) {
-                            mat.tulisMatriks(md.row, md.col);
-                            System.out.println("Solusi banyak!");
-                            i = md.row;
-                            break;
-                        }
-                    }
+                if (sum == 1) {
+                    System.out.print("x");
+                    System.out.print(j + 1);
+                    System.out.print(" memiliki solusi : ");
+                    System.out.println(mat.Mat[j][md.col-1]);
+                } else if (sum == 0) {
+                    System.out.print("x");
+                    System.out.print(j+1);
+                    System.out.println(" memiliki solusi parametrik");                
                 }
                 
-                if (i == md.row - 1 && md.row <= md.col - 1) {
-                    if (mat.Mat[i][i] == 1) {
-                        mat.tulisMatriks(md.row, md.col);
-                            System.out.println("Solusi banyak!");
-                            i = md.row;
-                            break;
-                    }
-                }
-                
+            }
+        } else {
+            if (mat.Mat[md.col - 2][md.col - 1] != 0) {
+                System.out.println("SPL tidak memiliki solusi");
+            } else {
+                System.out.println("SPL memiliki solusi infinit");
+            }
             
         }
     }
