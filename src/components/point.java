@@ -101,7 +101,7 @@ public class Point{
                 }
             }
         }
-        //tolong dicek lagi gw cuma nyolong sendal dari suatu tempat
+      
         //Sector 3: buat ke bentuk array    
         for (i=0;i<md.row;i++)
         {
