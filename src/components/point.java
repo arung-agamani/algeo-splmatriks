@@ -40,7 +40,7 @@ public class Point{
         //konversi kedalam bentuk a0 + a1*x + a2*x^2 +...+an*x^(n-1) = y
         //LANGSUNG HAJAR KE ARRAY
         int i,j;
-        MatrixDimension md = new MatrixDimension(points1.ptEff-1, points1.ptEff);
+        MatrixDimension md = new MatrixDimension((points1.points.ptEff)-1, points1.points.ptEff);
         //Sector 1 : convert ke matriks
         Matriks amatriks = new Matriks(md.row, md.col);
         anarray = new Matriks(1,md.col);
@@ -50,11 +50,11 @@ public class Point{
             {
                 if(j == md.col)
                 {
-                    amatriks.Mat[i][j] = points1.Pt[i].y;
+                    amatriks.Mat[i][j] = points1.points.Pt[i].y;
                 }
                 else
                 {
-                    amatriks.Mat[i][j] = 1 * ((float)Math.pow(points1.Pt[i].x,j));
+                    amatriks.Mat[i][j] = 1 * ((float)Math.pow(points1.points.Pt[i].x,j));
                 }
             }
         }

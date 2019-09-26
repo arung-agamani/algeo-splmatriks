@@ -2,7 +2,7 @@ package components;
 
 import java.lang.Math;
 
-import components.Point.TonsOfPts;
+//import components.Point.TonsOfPts;
 
 public class Matriks {
     //atribut
