@@ -81,6 +81,7 @@ public class TextReader {
             result.points.Pt[iter].y = Float.parseFloat(tempArray[1]);
             iter += 1;
         }
+        result.points.ptEff = md.row;
         sc.close();
 
         return result;

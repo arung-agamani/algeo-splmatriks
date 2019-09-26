@@ -16,6 +16,7 @@ public class Point{
 
     public Point (int a){ //constructor:
         this.points = new TonsOfPts();
+        this.points.ptEff = a;
     }
 
 
