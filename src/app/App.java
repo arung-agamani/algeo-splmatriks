@@ -110,7 +110,9 @@ public class App {
             break;
 
             case "3":
-            
+            Matriks loc0 = BacaMatriks();
+            MatrixDimension md0 = BacaUkuranMatriks();
+            PerformInversSPL(loc0, md0);
             break;
 
             case "4":
@@ -201,6 +203,33 @@ public class App {
         res = GaussJordan.CheckIfHasSolution(localMat, md, flag);
         localMat.tulisMatriks(md.row, md.col);
         GaussJordanResult(localMat, md);
+    }
+
+    public static void PerformInversSPL(Matriks mat, MatrixDimension md) {
+        Matriks a = new Matriks(md.row, md.col - 1);
+        Matriks b = new Matriks(md.row, 1);
+        if (md.row == md.col - 1) {
+            for (int i = 0; i < md.row; i++) {
+                for (int j = 0; j < md.row; j++) {
+                    a.Mat[i][j] = mat.Mat[i][j];
+                }
+                b.Mat[i][0] = mat.Mat[i][md.col-1];
+            }
+            Matriks inv_a = MatriksKofaktor.Invers(a, md.row);
+            int row = 0;
+            for (int j = 0; j < md.row; j++) {
+                
+                float res = 0;
+                for (int i = 0; i < md.row; i++) {                
+                    res += inv_a.Mat[row][i] * b.Mat[i][0];
+                }
+                System.out.println("x" + j + " = " + Matriks.round2(res, 2));
+                row += 1;
+            }
+            
+        } else {
+            System.out.println("Invers tidak dapat dilakukan. Solusi akan berbentuk parametrik atau tidak ada solusi unik.");
+        }
     }
 
     public static Matriks BacaMatriks() throws FileNotFoundException {
