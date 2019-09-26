@@ -77,10 +77,8 @@ public class TextReader {
         while(sc.hasNextLine()) {
             String line = sc.nextLine();
             tempArray = line.split(delimiter);
-            for (int i = 0; i < tempArray.length; i++) {
-                result.points.Pt[iter].x = (float)Integer.parseInt(tempArray[0]);
-                result.points.Pt[iter].y = (float)Integer.parseInt(tempArray[1]);
-            }
+            result.points.Pt[iter].x = Float.parseFloat(tempArray[0]);
+            result.points.Pt[iter].y = Float.parseFloat(tempArray[1]);
             iter += 1;
         }
         sc.close();

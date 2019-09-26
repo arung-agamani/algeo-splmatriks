@@ -16,11 +16,6 @@ public class Point{
 
     public Point (int a){ //constructor:
         this.points = new TonsOfPts();
-        for (int i=0;i<a;i++){
-            this.points.Pt[i].x=0;
-            this.points.Pt[i].y=0;
-            this.points.ptEff = a;
-        }
     }
 
 
@@ -41,6 +36,8 @@ public class Point{
         //LANGSUNG HAJAR KE ARRAY
         int i,j;
         MatrixDimension md = new MatrixDimension((points1.points.ptEff)-1, points1.points.ptEff);
+        md.row = (points1.points.ptEff)-1;
+        md.col = points1.points.ptEff;
         //Sector 1 : convert ke matriks
         Matriks amatriks = new Matriks(md.row, md.col);
         anarray = new Matriks(1,md.col);
