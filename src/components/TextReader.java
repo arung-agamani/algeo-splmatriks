@@ -69,7 +69,7 @@ public class TextReader {
         Scanner sc = new Scanner(file);
         String delimiter, tempArray[];
         MatrixDimension md = this.CheckDataLength(path);
-        Point result = new Point(md.row);
+        TonsOfPts result = new Point(md.row);
         int iter;
         boolean isy;
         delimiter = " ";

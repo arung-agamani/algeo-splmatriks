@@ -2,6 +2,7 @@ package app;
 
 import components.*;
 
+import components.Point.TonsOfPts;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -52,10 +53,15 @@ public class App {
                 break;
 
                 case "6":
-                Point inter = BacaPoint();
+                TonsOfPts inter = BacaPoint();
                 MatrixDimension md3 = BacaUkuranPoint();
-                
-                PrintSPLMenu();
+                Matriks arrayinter;
+                float x,hasilinter;
+                Scanner s = new Scanner(System.in); 
+                Point.Interpolasi(inter,arrayinter);
+                x = s.nextFloat();
+                hasilinter = Matriks.HasilInterpolasi(x,arrayinter,md3);
+                System.out.println("p("+x+") = "+hasilinter);
                 break;
 
                 case "7":

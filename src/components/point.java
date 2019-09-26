@@ -36,14 +36,14 @@ public class Point{
     }
 
 
-    public void Interpolasi (TonsOfPts points1) {
+    public void Interpolasi (TonsOfPts points1,Matriks anarray) {
         //konversi kedalam bentuk a0 + a1*x + a2*x^2 +...+an*x^(n-1) = y
         //LANGSUNG HAJAR KE ARRAY
         int i,j;
         MatrixDimension md = new MatrixDimension(points1.ptEff-1, points1.ptEff);
         //Sector 1 : convert ke matriks
         Matriks amatriks = new Matriks(md.row, md.col);
-        Matriks anarray = new Matriks(1,md.col);
+        anarray = new Matriks(1,md.col);
         for (i=0;i<=md.row;i++)
         {
             for (j=0;j<=md.col;j++)
