@@ -10,7 +10,7 @@ public class Kramer{
         }
     }
 
-    public static Matriks Cramerbagian(Matriks mat, int order, int replacedcol){
+    public static Matriks Cramerbagian(Matriks mat, Matriks nilai ,int order, int replacedcol){
         Matriks cram = new Matriks(order,order);
         for (int i=0;i<order;i++){
             for(int j=0;j<order;j++){
