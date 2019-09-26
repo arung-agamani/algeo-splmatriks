@@ -9,10 +9,6 @@ public class Kramer{
             System.out.print("x"+i+" ="+detcram);
         }
     }
-    
-
-    
-
 
     public static Matriks Cramerbagian(Matriks mat, int order, int replacedcol){
         Matriks cram = new Matriks(order,order);
@@ -26,14 +22,6 @@ public class Kramer{
                 }
             }
         }
-<<<<<<< HEAD
-        return cram;    
+        return cram;
     }
 }
-=======
-    } return cram;    
-
-
-}
-}
->>>>>>> 2edc1f1322628093df072e50ff5f351e287260f4
