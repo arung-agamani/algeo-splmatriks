@@ -12,13 +12,14 @@ public class Point{
         Pt[] Pt;
         int ptEff;
     }
+    public TonsOfPts points;
 
     public point (int a){ //constructor:
         this.TonsOfPts = new TonsOfPts.Pt[a];
         for (int i=0;i<a;i++){
-            this.TonsOfPts.Pt[i.x]=0;
-            this.TonsOfPts.Pt[i.y]=0;
-            this.TonsOfPts.ptEff = a;
+            this.points.Pt[i.x]=0;
+            this.points.Pt[i.y]=0;
+            this.points.ptEff = a;
         }
     }
 
@@ -28,9 +29,9 @@ public class Point{
         int i;//STILL WIP
         for (i=0;i<N;i++)
         {
-            this.TonsOfPts.Pt[i.x]=i;
-            this.TonsOfPts.Pt[i.x]=i+1;
-            this.TonsOfPts.ptEff += 1;
+            this.points.Pt[i.x]=i;
+            this.points.Pt[i.x]=i+1;
+            this.points.ptEff += 1;
         }//random banget angkatnya
     }
 
